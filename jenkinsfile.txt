@@ -1,0 +1,23 @@
+
+pipeline {
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/bryanna20/CICD.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'chmod +x build.sh'  // Make build.nsh executable
+                sh './build.sh'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'chmod +x test.sh'  // Make test.sh executable
+                sh './test.sh'
+            }
+        }
+    }
+}
